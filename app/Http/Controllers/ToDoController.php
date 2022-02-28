@@ -31,7 +31,7 @@ class ToDoController extends Controller
     public function index()
     {
         //
-        $todos = $this->todo->all();
+        $todos = $this->todo->orderby('updated_at', 'desc')->paginate(5);
         return view('todo.index',['todos' => $todos]);
     }
 

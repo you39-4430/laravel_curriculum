@@ -43,6 +43,7 @@
                 {!! Form::close() !!}
             </tr>
             @endforeach
+            {{ $todos->links() }}
         </tbody>
     </table>
 </div>
