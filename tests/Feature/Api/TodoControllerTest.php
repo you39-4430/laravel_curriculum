@@ -37,4 +37,12 @@ class TodoControllerTest extends TestCase
 
     }
 
+    /**
+     * @test
+     */
+    public function Todoの更新()
+    {
+
+        $res->assertOk();
+    }
 }
