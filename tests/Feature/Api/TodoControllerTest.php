@@ -21,16 +21,14 @@ class TodoControllerTest extends TestCase
     public function Todoの新規作成()
     {
         $params = [
-            'id' => 1,
             'title' => 'テスト:タイトル',
-            'content' => 'テスト:内容',
         ];
 
         $res = $this->postJson(route('api.todo.create'), $params);
         $res->assertOk();
         $todos = Todo::all();
 
-        $this->assertCount(1, $todos);
+        $this->assertCount(2, $todos);
 
         $todo = $todos->first();
         $this->assertEquals($params['title'], $todo->title);
@@ -38,11 +36,5 @@ class TodoControllerTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
-    public function Todoの更新ができる()
-    {
-        $res->assertStatus(200);
-    }
+
 }
