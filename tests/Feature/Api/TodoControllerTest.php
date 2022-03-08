@@ -22,14 +22,14 @@ class TodoControllerTest extends TestCase
     {
         $params = [
             'title' => 'テスト:タイトル',
-            'content' => 'テスト:内容',
+
         ];
 
         $res = $this->postJson(route('api.todo.create'), $params);
         $res->assertOk();
         $todos = Todo::all();
 
-        $this->assertCount(2, $todos);
+        $this->assertCount(1, $todos);
 
         $todo = $todos->first();
         $this->assertEquals($params['title'], $todo->title);

@@ -25,7 +25,6 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'id'=> ['required', 'int'],
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string', 'max:255'],
         ]);
