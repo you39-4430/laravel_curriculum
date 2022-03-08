@@ -22,6 +22,7 @@ class TodoControllerTest extends TestCase
     {
         $params = [
             'title' => 'テスト:タイトル',
+            'content' => 'テスト:内容',
         ];
 
         $res = $this->postJson(route('api.todo.create'), $params);
@@ -35,6 +36,5 @@ class TodoControllerTest extends TestCase
         $this->assertEquals($params['content'], $todo->content);
 
     }
-
 
 }
