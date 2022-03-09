@@ -42,7 +42,11 @@ class TodoControllerTest extends TestCase
      */
     public function Todoの更新()
     {
-
+        $updates = [
+            'title' => 'テスト:タイトル更新',
+            'content' => 'テスト:内容更新',
+        ];
+        $res = $this->postJson(route('api.todo.update'),$updates);
         $res->assertOk();
     }
 }
