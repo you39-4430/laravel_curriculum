@@ -77,7 +77,7 @@ class TodoControllerTest extends TestCase
 
         $this->postJson(route('api.todo.create'), $create);
         $todos = Todo::all();
-        $res = $this->postJson(route('api.todo.update'));
+        $res = $this->postJson(route('api.todo.delete'),$params);
         $res->assertOk();
     }
 
