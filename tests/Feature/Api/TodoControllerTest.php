@@ -42,12 +42,12 @@ class TodoControllerTest extends TestCase
      */
     public function Todoの更新()
     {
-        $params = [
+        $create = [
             'title' => 'テスト:タイトル',
             'content' => 'テスト:内容',
         ];
 
-        $res = $this->postJson(route('api.todo.create'), $params);
+        $this->postJson(route('api.todo.create'), $create);
         $todos = Todo::all();
         $data = $todos->last();
         $id = $data->id;
@@ -79,7 +79,17 @@ class TodoControllerTest extends TestCase
     public function Todoの削除()
     {
 
-        $delete = $this->postJson(route('api.todo.delete'));
-        $derete->assertOk();
+        $create = [
+            'title' => 'テスト:タイトル',
+            'content' => 'テスト:内容',
+        ];
+
+        $this->postJson(route('api.todo.create'), $create);
+        $todos = Todo::all();
+
+        $res = $this->postJson(route('api.todo.delete'));
+        $res->assertOk();
+        $todos = Todo::all();
+        $this->assertCount(0, $todos);
     }
 }
