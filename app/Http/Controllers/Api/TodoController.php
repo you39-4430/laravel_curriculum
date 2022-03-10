@@ -33,4 +33,24 @@ class TodoController extends Controller
         return ['message' => 'ok'];
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        $id = $request->id;
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string', 'max:255'],
+        ]);
+        $this->todo->find($id)->fill($validated)->save();
+
+        return ['message' => 'ok'];
+
+    }
+
 }
