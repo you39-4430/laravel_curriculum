@@ -68,10 +68,18 @@ class TodoControllerTest extends TestCase
     /**
      * @test
      */
-    // public function Todoの詳細情報取得()
-    // {
+    public function Todoの詳細情報取得()
+    {
+        $create = [
+            'title' => 'テスト:タイトル',
+            'content' => 'テスト:内容',
+        ];
 
-    // }
+        $this->postJson(route('api.todo.create'), $create);
+        $todos = Todo::all();
+        $res = $this->postJson(route('api.todo.update'));
+        $res->assertOk();
+    }
 
     /**
      * @test
