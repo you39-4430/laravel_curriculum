@@ -30,7 +30,6 @@ class TodoControllerTest extends TestCase
         $todos = Todo::all();
 
         $this->assertCount(1, $todos);
-
         $todo = $todos->first();
         $this->assertEquals($params['title'], $todo->title);
         $this->assertEquals($params['content'], $todo->content);
@@ -60,7 +59,7 @@ class TodoControllerTest extends TestCase
         $res->assertOk();
         $todos = Todo::all();
         $this->assertCount(1, $todos);
-        $todo = $todos->first();
+        $todo = $todos->last();
         $this->assertEquals($updates['title'], $todo->title);
         $this->assertEquals($updates['content'], $todo->content);
     }
@@ -74,11 +73,18 @@ class TodoControllerTest extends TestCase
             'title' => 'テスト:タイトル',
             'content' => 'テスト:内容',
         ];
-
         $this->postJson(route('api.todo.create'), $create);
         $todos = Todo::all();
-        $res = $this->postJson(route('api.todo.delete'));
+        $data = $todos->last();
+        $id = $data->id;
+        $params = [
+            'id' => $id
+        ];
+        $res = $this->postJson(route('api.todo.edit'),$params);
         $res->assertOk();
+        $this->assertCount(1, $todos);
+        $this->assertEquals($create['title'], $res['title']);
+        $this->assertEquals($create['content'], $res['content']);
     }
 
     /**
@@ -95,9 +101,9 @@ class TodoControllerTest extends TestCase
         $this->postJson(route('api.todo.create'), $create);
         $todos = Todo::all();
         $data = $todos->last();
-        $todo_id = $data->id;
+        $id = $data->id;
         $params = [
-            'id' => $todo_id
+            'id' => $id
         ];
         $res = $this->postJson(route('api.todo.delete'),$params);
         $res->assertOk();

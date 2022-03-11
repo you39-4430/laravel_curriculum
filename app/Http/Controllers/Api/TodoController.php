@@ -52,6 +52,18 @@ class TodoController extends Controller
 
     }
 
+        /**
+     * Show the form for editing the specified resource.
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request)
+    {
+        $id = $request->id;
+        $data = $this->todo->findOrFail($id);
+        return $data;
+    }
+
     /**
      * Remove the specified resource from storage.
      *
