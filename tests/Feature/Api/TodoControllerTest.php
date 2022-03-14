@@ -89,7 +89,7 @@ class TodoControllerTest extends TestCase
         Todo::factory()->count(1)->create();
         $todos = Todo::all();
         $data = $todos->first();
-        $id = $data->id;
+        $id = 1;
         $res = $this->postJson(route('api.todo.delete',['id'=>$id]));
         $res->assertOk();
 
