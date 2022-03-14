@@ -53,7 +53,6 @@ class TodoControllerTest extends TestCase
         $res->assertOk();
 
         $todos = Todo::all();
-        $this->assertCount(1, $todos);
         $todo = $todos->first();
         $this->assertEquals($params['title'], $todo->title);
         $this->assertEquals($params['content'], $todo->content);
@@ -76,7 +75,6 @@ class TodoControllerTest extends TestCase
         $res->assertOk();
 
         $todos = Todo::all();
-        $this->assertCount(1, $todos);
         $this->assertEquals($params['title'], $res['title']);
         $this->assertEquals($params['content'], $res['content']);
     }
