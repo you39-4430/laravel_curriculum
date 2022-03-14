@@ -67,7 +67,7 @@ class TodoControllerTest extends TestCase
         Todo::factory()->count(1)->create();
         $todos = Todo::all();
         $data = $todos->first();
-        $id = 1;
+        $id = $data->id;
         $params = [
             'title' => $data->title,
             'content' => $data->content
