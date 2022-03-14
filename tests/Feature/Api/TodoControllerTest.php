@@ -67,18 +67,17 @@ class TodoControllerTest extends TestCase
         Todo::factory()->count(1)->create();
         $todos = Todo::all();
         $data = $todos->first();
-        $id = $data->id;
+        $id = 1;
         $params = [
             'title' => $data->title,
             'content' => $data->content
         ];
         $res = $this->postJson(route('api.todo.show',['id'=>$id]));
         $res->assertOk();
-        
+
         $todos = Todo::all();
         $this->assertCount(1, $todos);
-        $todo = $todos->first();
-        $this->assertEquals($params['title'], $todo->title);
-        $this->assertEquals($params['content'], $todo->content);
+        $this->assertEquals($params['title'], $res['title']);
+        $this->assertEquals($params['content'], $res['content']);
     }
 }
