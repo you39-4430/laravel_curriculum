@@ -41,12 +41,17 @@ class TodoControllerTest extends TestCase
      */
     public function Todoの更新()
     {
-        $todos = Todo::factory()->count(1)->create();
+        Todo::factory()->count(1)->create();
+        $todos = Todo::all();
+        $data = $todos->first();
+        $id = $data->id;
         $params = [
             'title' => 'テスト:タイトル更新',
-            'content' => 'テスト:内容更新',
         ];
-        $res = $this->postJson(route('api.todo.update'), $params);
+        $res = $this->postJson(route('api.todo.update',['id'=>$id]), $params);
         $res->assertOk();
+        $todos = Todo::all();
+        $todo = $todos->first();
+        $this->assertEquals($params['title'], $todo->title);
     }
 }
