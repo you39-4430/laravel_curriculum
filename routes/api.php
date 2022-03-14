@@ -19,6 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('todo/create', [TodoController::class, 'store'])->name('api.todo.create');
-Route::post('todo/update', [TodoController::class, 'update'])->name('api.todo.update');
-Route::post('todo/edit', [TodoController::class, 'edit'])->name('api.todo.edit');
-Route::post('todo/delete', [TodoController::class, 'destroy'])->name('api.todo.delete');
+

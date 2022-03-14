@@ -41,73 +41,12 @@ class TodoControllerTest extends TestCase
      */
     public function Todoの更新()
     {
-        $create = [
-            'title' => 'テスト:タイトル',
-            'content' => 'テスト:内容',
-        ];
-
-        $this->postJson(route('api.todo.create'), $create);
-        $todos = Todo::all();
-        $data = $todos->last();
-        $id = $data->id;
-        $updates = [
-            'id' => $id,
+        $todos = Todo::factory()->count(1)->create();
+        $params = [
             'title' => 'テスト:タイトル更新',
             'content' => 'テスト:内容更新',
         ];
-        $res = $this->postJson(route('api.todo.update'),$updates);
+        $res = $this->postJson(route('api.todo.update'), $params);
         $res->assertOk();
-        $todos = Todo::all();
-        $this->assertCount(1, $todos);
-        $todo = $todos->last();
-        $this->assertEquals($updates['title'], $todo->title);
-        $this->assertEquals($updates['content'], $todo->content);
-    }
-
-    /**
-     * @test
-     */
-    public function Todoの詳細情報取得()
-    {
-        $create = [
-            'title' => 'テスト:タイトル',
-            'content' => 'テスト:内容',
-        ];
-        $this->postJson(route('api.todo.create'), $create);
-        $todos = Todo::all();
-        $data = $todos->last();
-        $id = $data->id;
-        $params = [
-            'id' => $id
-        ];
-        $res = $this->postJson(route('api.todo.edit'),$params);
-        $res->assertOk();
-        $this->assertCount(1, $todos);
-        $this->assertEquals($create['title'], $res['title']);
-        $this->assertEquals($create['content'], $res['content']);
-    }
-
-    /**
-     * @test
-     */
-    public function Todoの削除()
-    {
-
-        $create = [
-            'title' => 'テスト:タイトル',
-            'content' => 'テスト:内容',
-        ];
-
-        $this->postJson(route('api.todo.create'), $create);
-        $todos = Todo::all();
-        $data = $todos->last();
-        $id = $data->id;
-        $params = [
-            'id' => $id
-        ];
-        $res = $this->postJson(route('api.todo.delete'),$params);
-        $res->assertOk();
-        $todos = Todo::all();
-        $this->assertCount(0, $todos);
     }
 }
