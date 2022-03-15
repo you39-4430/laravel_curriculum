@@ -41,19 +41,17 @@ class TodoControllerTest extends TestCase
      */
     public function Todoの更新()
     {
-        Todo::factory()->count(1)->create();
-        $todos = Todo::all();
-        $data = $todos->first();
-        $id = $data->id;
+        Todo::factory()->count(10)->create();
+        $id = Todo::all()->first()->id;
         $params = [
             'title' => 'テスト:タイトル更新',
             'content' => 'テスト:内容更新',
         ];
-        $res = $this->postJson(route('api.todo.update',['id'=>$id]), $params);
+        $res = $this->putJson(route('api.todo.update',['id'=>$id]), $params);
         $res->assertOk();
 
-        $todos = Todo::all();
-        $todo = $todos->first();
+        $todo = Todo::find($id);
+        $this->assertEquals($id, $todo->id);
         $this->assertEquals($params['title'], $todo->title);
         $this->assertEquals($params['content'], $todo->content);
     }
@@ -63,18 +61,17 @@ class TodoControllerTest extends TestCase
      */
     public function Todoの詳細取得()
     {
-        Todo::factory()->count(1)->create();
-        $todos = Todo::all();
-        $data = $todos->first();
+        Todo::factory()->count(10)->create();
+        $data = Todo::all()->first();
         $id = $data->id;
         $params = [
             'title' => $data->title,
             'content' => $data->content
         ];
-        $res = $this->postJson(route('api.todo.show',['id'=>$id]));
+        $res = $this->getJson(route('api.todo.show',['id'=>$id]));
         $res->assertOk();
 
-        $todos = Todo::all();
+        $this->assertEquals($id, $res['id']);
         $this->assertEquals($params['title'], $res['title']);
         $this->assertEquals($params['content'], $res['content']);
     }
@@ -85,10 +82,8 @@ class TodoControllerTest extends TestCase
     public function Todoの削除()
     {
         Todo::factory()->count(1)->create();
-        $todos = Todo::all();
-        $data = $todos->first();
-        $id = $data->id;
-        $res = $this->postJson(route('api.todo.delete',['id'=>$id]));
+        $id = Todo::all()->first()->id;
+        $res = $this->deleteJson(route('api.todo.delete',['id'=>$id]));
         $res->assertOk();
 
         $todos = Todo::all();

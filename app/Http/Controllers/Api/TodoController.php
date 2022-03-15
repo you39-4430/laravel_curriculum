@@ -47,7 +47,7 @@ class TodoController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string', 'max:255']
         ]);
-        $this->todo->findOrFail($id)->fill($validated)->save();
+        $this->todo->findOrFail($id)->fill($validated)->update();
         return ['message' => 'ok'];
     }
 
