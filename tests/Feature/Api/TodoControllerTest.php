@@ -59,7 +59,7 @@ class TodoControllerTest extends TestCase
         $params = [
                     'content' => 'テスト:内容更新',
                 ];
-        $res = $this->putJson(route('api.todo.update',['id'=>$todo->id]),$params);
+        $res = $this->patchJson(route('api.todo.update',['id'=>$todo->id]),$params);
         $res->assertStatus(422);
     }
 
@@ -74,7 +74,7 @@ class TodoControllerTest extends TestCase
                     'title' => 'テスト:タイトル更新',
                     'content' => 'テスト:内容更新',
                 ];
-        $res = $this->putJson(route('api.todo.update',['id'=>$todo->id]),$params);
+        $res = $this->patchJson(route('api.todo.update',['id'=>$todo->id]),$params);
         $res->assertOk();
         $this->assertEquals($params['title'], $res['title']);
         $this->assertEquals($params['content'], $res['content']);
