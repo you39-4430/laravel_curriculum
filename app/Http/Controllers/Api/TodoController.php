@@ -33,47 +33,5 @@ class TodoController extends Controller
         return ['message' => 'ok'];
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-        $validated = $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'content' => ['required', 'string', 'max:255']
-        ]);
-        $this->todo->findOrFail($id)->fill($validated)->update();
-        return ['message' => 'ok'];
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(int $id)
-    {
-        //
-        $todo = $this->todo->findOrFail($id);
-        return $todo;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-        $this->todo->findOrFail($id)->delete();
-        return ['message' => 'ok'];
-    }
 }
