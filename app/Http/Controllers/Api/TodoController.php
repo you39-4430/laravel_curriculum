@@ -52,4 +52,16 @@ class TodoController extends Controller
         return $todo;
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id)
+    {
+        //
+        $todo = $this->todo->findOrFail($id);
+        return $todo;
+    }
 }
