@@ -47,5 +47,17 @@ class BillingControllerTest extends TestCase
         ];
         $res = $this->postJson(route('api.billing.create'), $params);
         $res->assertOk();
+
+        $billings = Billing::all();
+        $this->assertCount(1, $billings);
+        $billing = $billings->first();
+        $this->assertEquals($params['billing_id'], $billing->billing_id);
+        $this->assertEquals($params['billing_name'], $billing->billing_name);
+        $this->assertEquals($params['billing_name_kana'], $billing->billing_name_kana);
+        $this->assertEquals($params['address'], $billing->address);
+        $this->assertEquals($params['tel'], $billing->tel);
+        $this->assertEquals($params['department'], $billing->department);
+        $this->assertEquals($params['billing_address'], $billing->billing_address);
+        $this->assertEquals($params['billing_address_kana'], $billing->billing_address_kana);
     }
 }

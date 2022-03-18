@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Billing;
 use App\Models\Company;
 
-class BillingsFactory extends Factory
+class BillingFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.

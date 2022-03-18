@@ -22,7 +22,7 @@ class BillingController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'billing_id' => ['required', 'int'],
+            'billing_id' => ['required', 'integer'],
             'billing_name' => ['required', 'string', 'max:255'],
             'billing_name_kana' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
