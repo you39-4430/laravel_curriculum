@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\TodoController;
+use App\Http\Controllers\Api\CompanyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -23,4 +24,4 @@ Route::patch('todo/update/{id}', [TodoController::class, 'update'])->name('api.t
 Route::get('todo/show/{id}', [TodoController::class, 'show'])->name('api.todo.show');
 Route::delete('todo/delete/{id}', [TodoController::class, 'destroy'])->name('api.todo.delete');
 
-Route::post('company/create', [TodoController::class, 'store'])->name('api.company.create');
+Route::post('company/create', [CompanyController::class, 'store'])->name('api.company.create');
