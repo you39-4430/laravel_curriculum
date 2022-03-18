@@ -16,13 +16,13 @@ class CreateBillingsTable extends Migration
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('billing_id')->constrained('companies');
-            $table->string('billing_name');
-            $table->string('billing_name_kana');
-            $table->string('address');
-            $table->string('tel');
-            $table->string('department');
-            $table->string('billing_address');
-            $table->string('billing_address_kana');
+            $table->string('billing_name')->comment('請求先名称');
+            $table->string('billing_name_kana')->comment('請求先名称(かな)');
+            $table->string('address')->comment('請求先住所');
+            $table->string('tel')->comment('請求先電話番号');
+            $table->string('department')->comment('請求先部署');
+            $table->string('billing_address')->comment('請求先宛名');
+            $table->string('billing_address_kana')->comment('請求先宛名(かな)');
             $table->timestamps();
             $table->softDeletes();
         });
