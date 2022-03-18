@@ -65,6 +65,16 @@ class BillingControllerTest extends TestCase
     /**
      *  @test
      */
+    public function 請求先情報取得テスト失敗()
+    {
+        $billing = Billing::factory()->create();
+        $res = $this->getJson(route('api.billing.show',$billing->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     *  @test
+     */
     public function 請求先情報取得テスト()
     {
         $billing = Billing::factory()->create();
