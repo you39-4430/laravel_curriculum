@@ -35,4 +35,12 @@ class BillingController extends Controller
         $this->billing->fill($validated)->save();
         return ['message' => 'ok'];
     }
+
+    /**
+     * @param int $id
+     */
+    public function show($id)
+    {
+        return $this->billing->findOrFail($id);
+    }
 }
