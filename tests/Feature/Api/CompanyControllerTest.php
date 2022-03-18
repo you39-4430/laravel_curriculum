@@ -89,4 +89,42 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($params['representative'], $res['representative']);
         $this->assertEquals($params['representative_kana'], $res['representative_kana']);
     }
+
+    /**
+     * @test
+     */
+    public function 会社情報更新テスト失敗()
+    {
+        $company = Company::factory()->create();
+        $params = [
+            'company_name' => '株式会社 鈴木',
+            'company_name_kana' => 'カブシキガイシャ スズキ',
+        ];
+        $res = $this->putJson(route('api.company.update', $company->id), $params);
+        $res->assertStatus(422);
+    }
+    /**
+     * @test
+     */
+    public function 会社情報更新テスト()
+    {
+        $company = Company::factory()->create();
+        $params = [
+            'company_name' => '株式会社 鈴木',
+            'company_name_kana' => 'カブシキガイシャ スズキ',
+            'address' => '1111111 東京都東京区東京 1-1-1',
+            'tel' => '01209876543',
+            'representative' => '鈴木 太郎',
+            'representative_kana' => 'スズキ タロウ'
+        ];
+        $res = $this->putJson(route('api.company.update', $company->id), $params);
+        $res->assertOk();
+
+        $this->assertEquals($params['company_name'], $res['company_name']);
+        $this->assertEquals($params['company_name_kana'], $res['company_name_kana']);
+        $this->assertEquals($params['address'], $res['address']);
+        $this->assertEquals($params['tel'], $res['tel']);
+        $this->assertEquals($params['representative'], $res['representative']);
+        $this->assertEquals($params['representative_kana'], $res['representative_kana']);
+    }
 }
