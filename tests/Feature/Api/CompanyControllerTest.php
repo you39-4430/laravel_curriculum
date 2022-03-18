@@ -42,6 +42,16 @@ class CompanyControllerTest extends TestCase
             'representative_kana' => 'スズキ タロウ'
         ];
         $res = $this->postJson(route('api.company.create'), $params);
-        $res->assertStatus(200);
+        $res->assertOk();
+
+        $companies = Company::all();
+        $this->assertCount(1, $companies);
+        $company = $companies->first();
+        $this->assertEquals($params['company_name'], $company->company_name);
+        $this->assertEquals($params['company_name_kana'], $company->company_name_kana);
+        $this->assertEquals($params['address'], $company->address);
+        $this->assertEquals($params['tel'], $company->tel);
+        $this->assertEquals($params['representative'], $company->representative);
+        $this->assertEquals($params['representative_kana'], $company->representative_kana);
     }
 }
