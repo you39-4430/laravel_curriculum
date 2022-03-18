@@ -93,6 +93,19 @@ class CompanyControllerTest extends TestCase
     /**
      * @test
      */
+    public function 会社情報更新テスト失敗()
+    {
+        $company = Company::factory()->create();
+        $params = [
+            'company_name' => '株式会社 鈴木',
+            'company_name_kana' => 'カブシキガイシャ スズキ',
+        ];
+        $res = $this->putJson(route('api.company.update', $company->id), $params);
+        $res->assertStatus(422);
+    }
+    /**
+     * @test
+     */
     public function 会社情報更新テスト()
     {
         $company = Company::factory()->create();

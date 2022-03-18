@@ -32,9 +32,23 @@ class CompanyController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id)
+    public function show($id)
     {
         $company = $this->company->findOrFail($id);
+        return $company;
+    }
+
+    /**
+     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(CompanyRequest $request, $id)
+    {
+        $params = $request->all();
+        $this->company->findOrFail($id)->fill($params)->update();
+        $company = $this->company->findOrFail($id);
+
         return $company;
     }
 }
