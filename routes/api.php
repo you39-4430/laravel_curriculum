@@ -22,3 +22,5 @@ Route::post('todo/create', [TodoController::class, 'store'])->name('api.todo.cre
 Route::patch('todo/update/{id}', [TodoController::class, 'update'])->name('api.todo.update');
 Route::get('todo/show/{id}', [TodoController::class, 'show'])->name('api.todo.show');
 Route::delete('todo/delete/{id}', [TodoController::class, 'destroy'])->name('api.todo.delete');
+
+Route::post('company/create', [TodoController::class, 'store'])->name('api.company.create');

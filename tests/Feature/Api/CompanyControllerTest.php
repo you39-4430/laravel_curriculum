@@ -13,10 +13,17 @@ class CompanyControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function 会社情報を登録できる()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $params = [
+            'company_name' => '株式会社 鈴木',
+            'company_name_kana' => 'カブシキガイシャ スズキ',
+            'address' => '東京都東京区東京 1-1-1',
+            'tel' => '090-1234-5678',
+            'representative' => '鈴木 太郎',
+            'representative_kana' => 'スズキ タロウ',
+        ];
+        $res = $this->postJson(route('api.company.create'),$params);
+        $res->assertStatus(200);
     }
 }
