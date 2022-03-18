@@ -58,6 +58,16 @@ class CompanyControllerTest extends TestCase
     /**
      * @test
      */
+    public function 会社情報取得テスト失敗()
+    {
+        $company = Company::factory()->create();
+        $res = $this->getJson(route('api.company.show', $company->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     * @test
+     */
     public function 会社情報取得テスト()
     {
         $company = Company::factory()->create();
@@ -72,5 +82,6 @@ class CompanyControllerTest extends TestCase
         $res = $this->getJson(route('api.company.show', $company->id));
         $res->assertOk();
 
+        // dd($res);
     }
 }
