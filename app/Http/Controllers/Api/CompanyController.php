@@ -17,8 +17,6 @@ class CompanyController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -28,5 +26,15 @@ class CompanyController extends Controller
 
         $this->company->fill($params)->save();
         return ['message' => 'ok'];
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(int $id)
+    {
+        $company = $this->company->findOrFail($id);
+        return $company;
     }
 }

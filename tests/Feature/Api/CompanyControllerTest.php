@@ -54,4 +54,39 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($params['representative'], $company->representative);
         $this->assertEquals($params['representative_kana'], $company->representative_kana);
     }
+
+    /**
+     * @test
+     */
+    public function 会社情報取得テスト失敗()
+    {
+        $company = Company::factory()->create();
+        $res = $this->getJson(route('api.company.show', $company->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     * @test
+     */
+    public function 会社情報取得テスト()
+    {
+        $company = Company::factory()->create();
+        $params = [
+            'company_name' => $company->company_name,
+            'company_name_kana' => $company->company_name_kana,
+            'address' => $company->address,
+            'tel' => $company->tel,
+            'representative' => $company->representative,
+            'representative_kana' => $company->representative_kana
+        ];
+        $res = $this->getJson(route('api.company.show', $company->id));
+        $res->assertOk();
+
+        $this->assertEquals($params['company_name'], $res['company_name']);
+        $this->assertEquals($params['company_name_kana'], $res['company_name_kana']);
+        $this->assertEquals($params['address'], $res['address']);
+        $this->assertEquals($params['tel'], $res['tel']);
+        $this->assertEquals($params['representative'], $res['representative']);
+        $this->assertEquals($params['representative_kana'], $res['representative_kana']);
+    }
 }
