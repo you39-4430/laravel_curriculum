@@ -29,6 +29,7 @@ class BillingControllerTest extends TestCase
         $res = $this->postJson(route('api.billing.create'), $params);
         $res->assertStatus(422);
     }
+
     /**
      *  @test
      */
@@ -59,5 +60,26 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['department'], $billing->department);
         $this->assertEquals($params['billing_address'], $billing->billing_address);
         $this->assertEquals($params['billing_address_kana'], $billing->billing_address_kana);
+    }
+
+    /**
+     *  @test
+     */
+    public function 請求先情報取得テスト()
+    {
+        $billing = Billing::factory()->create();
+        $params = [
+            'billing_id' => $billing->billing_id,
+            'billing_name' => $billing->billing_name,
+            'billing_name_kana' => $billing->billing_name_kana,
+            'address' => $billing->address,
+            'tel' => $billing->tel,
+            'department' => $billing->department,
+            'billing_address' => $billing->billing_address,
+            'billing_address_kana' => $billing->billing_address_kana
+        ];
+
+        $res = $this->getJson(route('api.billing.show',$billing->id));
+        $res->assertOk();
     }
 }
