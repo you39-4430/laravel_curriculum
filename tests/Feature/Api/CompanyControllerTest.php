@@ -119,5 +119,12 @@ class CompanyControllerTest extends TestCase
         ];
         $res = $this->putJson(route('api.company.update', $company->id), $params);
         $res->assertOk();
+
+        $this->assertEquals($params['company_name'], $res['company_name']);
+        $this->assertEquals($params['company_name_kana'], $res['company_name_kana']);
+        $this->assertEquals($params['address'], $res['address']);
+        $this->assertEquals($params['tel'], $res['tel']);
+        $this->assertEquals($params['representative'], $res['representative']);
+        $this->assertEquals($params['representative_kana'], $res['representative_kana']);
     }
 }
