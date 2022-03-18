@@ -127,4 +127,5 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($params['representative'], $res['representative']);
         $this->assertEquals($params['representative_kana'], $res['representative_kana']);
     }
+
 }

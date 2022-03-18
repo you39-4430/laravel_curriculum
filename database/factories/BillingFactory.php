@@ -3,17 +3,17 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Billings;
+use App\Models\Billing;
 use App\Models\Company;
 
-class BillingsFactory extends Factory
+class BillingFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Billings::class;
+    protected $model = Billing::class;
 
     /**
      * Define the model's default state.
