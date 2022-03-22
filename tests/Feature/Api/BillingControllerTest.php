@@ -101,4 +101,24 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['billing_address'], $res['billing_address']);
         $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
     }
+
+    /**
+     *  @test
+     */
+    public function 請求先情報更新テスト()
+    {
+        $billing  = Billing::factory()->create();
+        $params = [
+            'billing_name' => '株式会社 田中',
+            'billing_name_kana' => 'カブシキガイシャ タナカ',
+            'address' => '0000000 東京都東京区東京 1-1-1',
+            'tel' => '01098761234',
+            'department' => '総務部',
+            'billing_address' => '田中 太郎',
+            'billing_address_kana' => 'タナカ タロウ'
+        ];
+
+        $res = $this->putJson(route('api.billing.update', $billing->id), $params);
+        $res->assertOk();
+    }
 }
