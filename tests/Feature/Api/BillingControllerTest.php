@@ -144,5 +144,6 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['department'], $res['department']);
         $this->assertEquals($params['billing_address'], $res['billing_address']);
         $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
+        
     }
 }
