@@ -105,10 +105,25 @@ class BillingControllerTest extends TestCase
     /**
      *  @test
      */
+    public function 請求先情報更新テスト失敗()
+    {
+        $billing  = Billing::factory()->create();
+        $params = [
+            'billing_name' => '株式会社 田中',
+            'billing_name_kana' => 'カブシキガイシャ タナカ',
+        ];
+
+        $res = $this->putJson(route('api.billing.update', $billing->id), $params);
+        $res->assertStatus(422);
+    }
+    /**
+     *  @test
+     */
     public function 請求先情報更新テスト()
     {
         $billing  = Billing::factory()->create();
         $params = [
+            'billing_id' => $billing->billing_id,
             'billing_name' => '株式会社 田中',
             'billing_name_kana' => 'カブシキガイシャ タナカ',
             'address' => '0000000 東京都東京区東京 1-1-1',

@@ -43,4 +43,25 @@ class BillingController extends Controller
     {
         return $this->billing->findOrFail($id);
     }
+
+    /**
+     * @param int $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'billing_id' => ['required', 'integer'],
+            'billing_name' => ['required', 'string', 'max:255'],
+            'billing_name_kana' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'tel' => ['required', 'string', 'max:255'],
+            'department' => ['required', 'string', 'max:255'],
+            'billing_address' => ['required', 'string', 'max:255'],
+            'billing_address_kana' => ['required', 'string', 'max:255'],
+        ]);
+        $this->billing->findOrFail($id)->fill($validated)->update();
+        return $this->billing->findOrFail($id);
+    }
 }

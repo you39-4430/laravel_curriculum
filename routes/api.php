@@ -31,3 +31,4 @@ Route::put('company/update/{id}', [CompanyController::class, 'update'])->name('a
 
 Route::post('billing/create', [BillingController::class, 'store'])->name('api.billing.create');
 Route::get('billing/show/{id}', [BillingController::class, 'show'])->name('api.billing.show');
+Route::put('billing/update/{id}', [BillingController::class, 'update'])->name('api.billing.update');
