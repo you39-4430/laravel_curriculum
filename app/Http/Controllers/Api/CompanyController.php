@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Models\Company;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
@@ -17,7 +16,7 @@ class CompanyController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\CompanyRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CompanyRequest $request)
@@ -40,7 +39,7 @@ class CompanyController extends Controller
 
     /**
      * @param int $id
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\CompanyRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function update(CompanyRequest $request, $id)

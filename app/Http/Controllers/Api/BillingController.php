@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Billing;
+use App\Http\Requests\BillingRequest;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class BillingController extends Controller
 {
@@ -16,21 +16,12 @@ class BillingController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\BillingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BillingRequest $request)
     {
-        $validated = $request->validate([
-            'billing_id' => ['required', 'integer'],
-            'billing_name' => ['required', 'string', 'max:255'],
-            'billing_name_kana' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'tel' => ['required', 'string', 'max:255'],
-            'department' => ['required', 'string', 'max:255'],
-            'billing_address' => ['required', 'string', 'max:255'],
-            'billing_address_kana' => ['required', 'string', 'max:255'],
-        ]);
+        $validated = $request->all();
 
         $this->billing->fill($validated)->save();
         return ['message' => 'ok'];
@@ -46,21 +37,12 @@ class BillingController extends Controller
 
     /**
      * @param int $id
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request\BillingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BillingRequest $request, $id)
     {
-        $validated = $request->validate([
-            'billing_id' => ['required', 'integer'],
-            'billing_name' => ['required', 'string', 'max:255'],
-            'billing_name_kana' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'tel' => ['required', 'string', 'max:255'],
-            'department' => ['required', 'string', 'max:255'],
-            'billing_address' => ['required', 'string', 'max:255'],
-            'billing_address_kana' => ['required', 'string', 'max:255'],
-        ]);
+        $validated = $request->all();
         $this->billing->findOrFail($id)->fill($validated)->update();
         return $this->billing->findOrFail($id);
     }
