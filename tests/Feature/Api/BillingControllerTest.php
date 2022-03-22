@@ -135,5 +135,14 @@ class BillingControllerTest extends TestCase
 
         $res = $this->putJson(route('api.billing.update', $billing->id), $params);
         $res->assertOk();
+
+        $this->assertEquals($params['billing_id'], $res['billing_id']);
+        $this->assertEquals($params['billing_name'], $res['billing_name']);
+        $this->assertEquals($params['billing_name_kana'], $res['billing_name_kana']);
+        $this->assertEquals($params['address'], $res['address']);
+        $this->assertEquals($params['tel'], $res['tel']);
+        $this->assertEquals($params['department'], $res['department']);
+        $this->assertEquals($params['billing_address'], $res['billing_address']);
+        $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
     }
 }
