@@ -52,7 +52,7 @@ class BillingController extends Controller
      */
     public function destroy($id)
     {
-        $this->billing->findOrFail($id)->delete;
+        $this->billing->findOrFail($id)->delete();
         return ['message' => 'ok'];
     }
 }
