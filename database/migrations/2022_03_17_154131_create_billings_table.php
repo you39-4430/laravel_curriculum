@@ -15,7 +15,7 @@ class CreateBillingsTable extends Migration
     {
         Schema::create('billings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('billing_id')->constrained('companies')->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->string('billing_name')->comment('請求先名称');
             $table->string('billing_name_kana')->comment('請求先名称(かな)');
             $table->string('address')->comment('請求先住所');

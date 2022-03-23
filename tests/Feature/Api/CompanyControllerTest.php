@@ -3,6 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Company;
+use App\Models\Billing;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -126,6 +127,34 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($params['tel'], $res['tel']);
         $this->assertEquals($params['representative'], $res['representative']);
         $this->assertEquals($params['representative_kana'], $res['representative_kana']);
+    }
+
+    /**
+     * @test
+     */
+    public function 会社情報削除テスト失敗()
+    {
+        Billing::factory()->create();
+        $company = Company::all()->first();
+
+        $res = $this->deleteJson(route('api.company.delete', $company->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     * @test
+     */
+    public function 会社情報削除テスト()
+    {
+        Billing::factory()->create();
+        $company = Company::all()->first();
+        $res = $this->deleteJson(route('api.company.delete', $company->id));
+        $res->assertOk();
+
+        $companies = Company::all();
+        $billings = Billing::all();
+        $this->assertCount(0, $companies);
+        $this->assertCount(0, $billings);
     }
 
 }

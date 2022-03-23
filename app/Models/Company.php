@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
         /**
     * @var array
     */
@@ -25,4 +26,19 @@ class Company extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at'];
+
+    public function billings()
+    {
+        return $this->hasMany(Billing::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($company) {
+            $company->billings()->delete();
+        });
+    }
 }
+

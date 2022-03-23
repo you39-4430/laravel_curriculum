@@ -24,7 +24,7 @@ class BillingRequest extends FormRequest
     public function rules()
     {
         return [
-            'billing_id' => ['required', 'integer'],
+            'company_id' => ['required', 'integer'],
             'billing_name' => ['required', 'string', 'max:255'],
             'billing_name_kana' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
