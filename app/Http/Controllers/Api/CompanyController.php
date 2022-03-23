@@ -58,6 +58,6 @@ class CompanyController extends Controller
     {
         $this->company->findOrFail($id)->delete();
         return ['message' => 'ok'];
-
     }
+
 }

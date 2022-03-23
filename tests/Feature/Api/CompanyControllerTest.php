@@ -157,4 +157,14 @@ class CompanyControllerTest extends TestCase
         $this->assertCount(0, $billings);
     }
 
+    /**
+     * @test
+     */
+    public function 会社情報・請求先情報取得テスト()
+    {
+        Billing::factory()->create();
+        $company = Company::all()->first();
+        $res = $this->getJson(route('api.company.relationShow', $company->id));
+        $res->assertOk();
+    }
 }
