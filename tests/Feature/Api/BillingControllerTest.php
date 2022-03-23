@@ -122,6 +122,7 @@ class BillingControllerTest extends TestCase
         $res = $this->putJson(route('api.billing.update', $billing->id), $params);
         $res->assertStatus(422);
     }
+
     /**
      *  @test
      */
@@ -151,5 +152,32 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['billing_address'], $res['billing_address']);
         $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
 
+    }
+
+    /**
+     *  @test
+     */
+    public function 請求先情報削除テスト失敗()
+    {
+        $billing  = Billing::factory()->create();
+
+        $res = $this->deleteJson(route('api.billing.delete', $billing->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     *  @test
+     */
+    public function 請求先情報削除テスト()
+    {
+        $billing  = Billing::factory()->create();
+
+        $res = $this->deleteJson(route('api.billing.delete', $billing->id));
+        $res->assertOk();
+
+        $companies = Company::all();
+        $billings = Billing::all();
+        $this->assertCount(1, $companies);
+        $this->assertCount(0, $billings);
     }
 }
