@@ -151,6 +151,10 @@ class CompanyControllerTest extends TestCase
         $res = $this->deleteJson(route('api.company.delete', $company->id));
         $res->assertOk();
 
+        $companies = Company::all();
+        $billings = Billing::all();
+        $this->assertCount(0, $companies);
+        $this->assertCount(0, $billings);
     }
 
 }
