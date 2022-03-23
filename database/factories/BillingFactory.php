@@ -23,7 +23,7 @@ class BillingFactory extends Factory
     public function definition()
     {
         return [
-            'billing_id' => Company::factory(),
+            'company_id' => Company::factory(),
             'billing_name' => '株式会社 佐藤',
             'billing_name_kana' => 'カブシキガイシャ サトウ',
             'address' => $this->faker->address(),

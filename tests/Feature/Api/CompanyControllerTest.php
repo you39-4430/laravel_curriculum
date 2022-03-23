@@ -132,10 +132,24 @@ class CompanyControllerTest extends TestCase
     /**
      * @test
      */
+    public function 会社情報削除テスト失敗()
+    {
+        Billing::factory()->create();
+        $company = Company::all()->first();
+
+        $res = $this->deleteJson(route('api.company.delete', $company->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     * @test
+     */
     public function 会社情報削除テスト()
     {
         Billing::factory()->create();
-        $res = $this->deleteJson(route('api.company.delete'));
+        $company = Company::all()->first();
+
+        $res = $this->deleteJson(route('api.company.delete', $company->id));
         $res->assertOk();
     }
 

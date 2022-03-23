@@ -23,11 +23,17 @@ class BillingControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $params = [
+            'company_id' => $company->id + 1,
+            'billing_name' => '株式会社 佐藤',
+            'billing_name_kana' => 'カブシキガイシャ サトウ',
+            'address' => '東京都東京区東京 1-1-1',
+            'tel' => '090-1234-5678',
+            'department' => '営業部',
             'billing_address' => '佐藤 太郎',
             'billing_address_kana' => 'サトウ タロウ'
         ];
         $res = $this->postJson(route('api.billing.create'), $params);
-        $res->assertStatus(422);
+        $res->assertStatus(500);
     }
 
     /**
@@ -37,7 +43,7 @@ class BillingControllerTest extends TestCase
     {
         $company = Company::factory()->create();
         $params = [
-            'billing_id' => $company->id,
+            'company_id' => $company->id,
             'billing_name' => '株式会社 佐藤',
             'billing_name_kana' => 'カブシキガイシャ サトウ',
             'address' => '東京都東京区東京 1-1-1',
@@ -52,7 +58,7 @@ class BillingControllerTest extends TestCase
         $billings = Billing::all();
         $this->assertCount(1, $billings);
         $billing = $billings->first();
-        $this->assertEquals($params['billing_id'], $billing->billing_id);
+        $this->assertEquals($params['company_id'], $billing->company_id);
         $this->assertEquals($params['billing_name'], $billing->billing_name);
         $this->assertEquals($params['billing_name_kana'], $billing->billing_name_kana);
         $this->assertEquals($params['address'], $billing->address);
@@ -79,7 +85,7 @@ class BillingControllerTest extends TestCase
     {
         $billing = Billing::factory()->create();
         $params = [
-            'billing_id' => $billing->billing_id,
+            'company_id' => $billing->company_id,
             'billing_name' => $billing->billing_name,
             'billing_name_kana' => $billing->billing_name_kana,
             'address' => $billing->address,
@@ -92,7 +98,7 @@ class BillingControllerTest extends TestCase
         $res = $this->getJson(route('api.billing.show',$billing->id));
         $res->assertOk();
 
-        $this->assertEquals($params['billing_id'], $res['billing_id']);
+        $this->assertEquals($params['company_id'], $res['company_id']);
         $this->assertEquals($params['billing_name'], $res['billing_name']);
         $this->assertEquals($params['billing_name_kana'], $res['billing_name_kana']);
         $this->assertEquals($params['address'], $res['address']);
@@ -123,7 +129,7 @@ class BillingControllerTest extends TestCase
     {
         $billing  = Billing::factory()->create();
         $params = [
-            'billing_id' => $billing->billing_id,
+            'company_id' => $billing->company_id,
             'billing_name' => '株式会社 田中',
             'billing_name_kana' => 'カブシキガイシャ タナカ',
             'address' => '0000000 東京都東京区東京 1-1-1',
@@ -136,7 +142,7 @@ class BillingControllerTest extends TestCase
         $res = $this->putJson(route('api.billing.update', $billing->id), $params);
         $res->assertOk();
 
-        $this->assertEquals($params['billing_id'], $res['billing_id']);
+        $this->assertEquals($params['company_id'], $res['company_id']);
         $this->assertEquals($params['billing_name'], $res['billing_name']);
         $this->assertEquals($params['billing_name_kana'], $res['billing_name_kana']);
         $this->assertEquals($params['address'], $res['address']);
@@ -144,6 +150,6 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['department'], $res['department']);
         $this->assertEquals($params['billing_address'], $res['billing_address']);
         $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
-        
+
     }
 }
