@@ -157,11 +157,23 @@ class BillingControllerTest extends TestCase
     /**
      *  @test
      */
+    public function 請求先情報削除テスト失敗()
+    {
+        $billing  = Billing::factory()->create();
+
+        $res = $this->deleteJson(route('api.billing.delete', $billing->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     *  @test
+     */
     public function 請求先情報削除テスト()
     {
         $billing  = Billing::factory()->create();
 
         $res = $this->deleteJson(route('api.billing.delete', $billing->id));
         $res->assertOk();
+
     }
 }

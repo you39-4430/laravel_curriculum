@@ -33,3 +33,4 @@ Route::delete('company/delete/{id}', [CompanyController::class, 'destroy'])->nam
 Route::post('billing/create', [BillingController::class, 'store'])->name('api.billing.create');
 Route::get('billing/show/{id}', [BillingController::class, 'show'])->name('api.billing.show');
 Route::put('billing/update/{id}', [BillingController::class, 'update'])->name('api.billing.update');
+Route::delete('billing/delete/{id}', [BillingController::class, 'destroy'])->name('api.billing.delete');

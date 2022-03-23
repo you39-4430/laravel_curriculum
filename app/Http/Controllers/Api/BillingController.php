@@ -46,4 +46,13 @@ class BillingController extends Controller
         $this->billing->findOrFail($id)->fill($validated)->update();
         return $this->billing->findOrFail($id);
     }
+
+    /**
+     * @param int $id
+     */
+    public function destroy($id)
+    {
+        $this->billing->findOrFail($id)->delete;
+        return ['message' => 'ok'];
+    }
 }
