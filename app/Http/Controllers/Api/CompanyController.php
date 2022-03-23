@@ -57,8 +57,8 @@ class CompanyController extends Controller
     public function destroy($id)
     {
         $this->company->findOrFail($id)->delete();
-        // return $this->company->withTrashed()->get();
-        return ['message' => 'ok'];
+        return $this->company->withTrashed()->get();
+        // return ['message' => 'ok'];
 
     }
 }

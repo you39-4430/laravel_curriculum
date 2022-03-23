@@ -27,5 +27,18 @@ class Company extends Model
      */
     protected $dates = ['created_at', 'updated_at'];
 
+    public function billings()
+    {
+        return $this->hasMany(Billing::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function ($company) {
+            $company->billings()->delete();
+        });
+    }
 }
 

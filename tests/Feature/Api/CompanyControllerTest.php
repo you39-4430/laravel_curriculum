@@ -148,9 +148,9 @@ class CompanyControllerTest extends TestCase
     {
         Billing::factory()->create();
         $company = Company::all()->first();
-
         $res = $this->deleteJson(route('api.company.delete', $company->id));
         $res->assertOk();
+
     }
 
 }
