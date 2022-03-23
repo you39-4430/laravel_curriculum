@@ -160,6 +160,17 @@ class CompanyControllerTest extends TestCase
     /**
      * @test
      */
+    public function 会社情報・請求先情報取得テスト失敗()
+    {
+        Billing::factory()->create();
+        $company = Company::all()->first();
+        $res = $this->getJson(route('api.company.relationShow', $company->id + 1));
+        $res->assertStatus(404);
+    }
+
+    /**
+     * @test
+     */
     public function 会社情報・請求先情報取得テスト()
     {
         Billing::factory()->create();

@@ -60,4 +60,13 @@ class CompanyController extends Controller
         return ['message' => 'ok'];
     }
 
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function relationShow($id)
+    {
+        $company = $this->company->findOrFail($id);
+        return $company;
+    }
 }
