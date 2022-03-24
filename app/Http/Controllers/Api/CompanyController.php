@@ -66,7 +66,8 @@ class CompanyController extends Controller
      */
     public function relationShow($id)
     {
+        $billing = $this->company->findOrFail($id)->billing;
         $company = $this->company->findOrFail($id);
-        return $company;
+        return [$company, $billing];
     }
 }

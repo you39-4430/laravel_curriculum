@@ -177,5 +177,6 @@ class CompanyControllerTest extends TestCase
         $company = Company::all()->first();
         $res = $this->getJson(route('api.company.relationShow', $company->id));
         $res->assertOk();
+        dd($res[0],$res[1]);
     }
 }

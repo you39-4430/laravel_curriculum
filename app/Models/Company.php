@@ -29,7 +29,7 @@ class Company extends Model
 
     public function billing()
     {
-        return $this->hasMany(Billing::class);
+        return $this->hasOne(Billing::class);
     }
 
     public static function boot()
