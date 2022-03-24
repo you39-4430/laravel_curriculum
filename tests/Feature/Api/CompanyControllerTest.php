@@ -164,7 +164,7 @@ class CompanyControllerTest extends TestCase
     {
         Billing::factory()->create();
         $company = Company::all()->first();
-        $res = $this->getJson(route('api.company.formatShow', $company->id + 1));
+        $res = $this->getJson(route('api.company.formattedResponseBody', $company->id + 1));
         $res->assertStatus(404);
     }
 
@@ -176,7 +176,7 @@ class CompanyControllerTest extends TestCase
         Billing::factory()->create();
         $company = Company::all()->first();
         $billing = Billing::all()->first();
-        $res = $this->getJson(route('api.company.formatShow', $company->id));
+        $res = $this->getJson(route('api.company.formattedResponseBody', $company->id));
         $res->assertOk();
 
         $this->assertEquals($company->company_name, $res['company_name']);
