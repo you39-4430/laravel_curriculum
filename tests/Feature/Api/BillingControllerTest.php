@@ -74,7 +74,7 @@ class BillingControllerTest extends TestCase
     public function 請求先情報取得テスト失敗()
     {
         $billing = Billing::factory()->create();
-        $res = $this->getJson(route('api.billing.show',$billing->id + 1));
+        $res = $this->getJson(route('api.billing.show',$billing->billing_id + 1));
         $res->assertStatus(404);
     }
 
@@ -94,7 +94,7 @@ class BillingControllerTest extends TestCase
             'billing_address_name' => $billing->billing_address_name,
             'billing_address_name_kana' => $billing->billing_address_name_kana
         ];
-        $res = $this->getJson(route('api.billing.show',$billing->id));
+        $res = $this->getJson(route('api.billing.show',$billing->billing_id));
         $res->assertOk();
 
         $this->assertEquals($params['company_id'], $res['company_id']);
@@ -118,7 +118,7 @@ class BillingControllerTest extends TestCase
             'billing_name_kana' => 'カブシキガイシャ タナカ',
         ];
 
-        $res = $this->putJson(route('api.billing.update', $billing->id), $params);
+        $res = $this->putJson(route('api.billing.update', $billing->billing_id), $params);
         $res->assertStatus(422);
     }
 
@@ -139,7 +139,7 @@ class BillingControllerTest extends TestCase
             'billing_address_name_kana' => 'タナカ タロウ'
         ];
 
-        $res = $this->putJson(route('api.billing.update', $billing->id), $params);
+        $res = $this->putJson(route('api.billing.update', $billing->billing_id), $params);
         $res->assertOk();
 
         $this->assertEquals($params['company_id'], $res['company_id']);
@@ -160,7 +160,7 @@ class BillingControllerTest extends TestCase
     {
         $billing  = Billing::factory()->create();
 
-        $res = $this->deleteJson(route('api.billing.delete', $billing->id + 1));
+        $res = $this->deleteJson(route('api.billing.delete', $billing->billing_id + 1));
         $res->assertStatus(404);
     }
 
@@ -171,7 +171,7 @@ class BillingControllerTest extends TestCase
     {
         $billing  = Billing::factory()->create();
 
-        $res = $this->deleteJson(route('api.billing.delete', $billing->id));
+        $res = $this->deleteJson(route('api.billing.delete', $billing->billing_id));
         $res->assertOk();
 
         $billings = Billing::all();

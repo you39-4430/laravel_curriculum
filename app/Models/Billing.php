@@ -11,6 +11,8 @@ class Billing extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $primaryKey = 'billing_id';
+
     /**
     * @var array
     */

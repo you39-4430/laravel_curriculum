@@ -14,7 +14,7 @@ class CreateBillingsTable extends Migration
     public function up()
     {
         Schema::create('billings', function (Blueprint $table) {
-            $table->id();
+            $table->id('billing_id');
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->string('billing_name')->comment('請求先名称');
             $table->string('billing_name_kana')->comment('請求先名称(かな)');
