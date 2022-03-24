@@ -174,7 +174,9 @@ class BillingControllerTest extends TestCase
         $res = $this->deleteJson(route('api.billing.delete', $billing->billing_id));
         $res->assertOk();
 
+        $companies = Company::all();
         $billings = Billing::all();
+        $this->assertCount(1, $companies);
         $this->assertCount(0, $billings);
     }
 }
