@@ -33,8 +33,8 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        $company = $this->company->findOrFail($id);
-        return $company;
+        return $this->company->findOrFail($id);
+
     }
 
     /**
@@ -46,9 +46,7 @@ class CompanyController extends Controller
     {
         $params = $request->all();
         $this->company->findOrFail($id)->fill($params)->update();
-        $company = $this->company->findOrFail($id);
-
-        return $company;
+        return $this->company->findOrFail($id);
     }
 
     /**
@@ -68,7 +66,6 @@ class CompanyController extends Controller
     {
         $company = collect($this->company->findOrFail($id))->toArray();
         $billing = collect($this->company->findOrFail($id)->billing)->toArray();
-        $format = array_merge($company, $billing);
-        return $format;
+        return array_merge($company, $billing);
     }
 }
