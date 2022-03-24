@@ -27,11 +27,11 @@ class BillingRequest extends FormRequest
             'company_id' => ['required', 'integer'],
             'billing_name' => ['required', 'string', 'max:255'],
             'billing_name_kana' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'tel' => ['required', 'string', 'max:255'],
-            'department' => ['required', 'string', 'max:255'],
             'billing_address' => ['required', 'string', 'max:255'],
-            'billing_address_kana' => ['required', 'string', 'max:255'],
+            'billing_tel' => ['required', 'string', 'max:255'],
+            'department' => ['required', 'string', 'max:255'],
+            'billing_address_name' => ['required', 'string', 'max:255'],
+            'billing_address_name_kana' => ['required', 'string', 'max:255'],
         ];
     }
 }

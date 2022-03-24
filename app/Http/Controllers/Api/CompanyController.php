@@ -59,4 +59,16 @@ class CompanyController extends Controller
         $this->company->findOrFail($id)->delete();
         return ['message' => 'ok'];
     }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function formatShow($id)
+    {
+        $company = collect($this->company->findOrFail($id))->toArray();
+        $billing = collect($this->company->findOrFail($id)->billing)->toArray();
+        $format = array_merge($company, $billing);
+        return $format;
+    }
 }
