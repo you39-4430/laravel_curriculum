@@ -175,8 +175,23 @@ class CompanyControllerTest extends TestCase
     {
         Billing::factory()->create();
         $company = Company::all()->first();
+        $billing = Billing::all()->first();
         $res = $this->getJson(route('api.company.formatShow', $company->id));
         $res->assertOk();
-        dd($res);
+
+        $this->assertEquals($company->company_name, $res['company_name']);
+        $this->assertEquals($company->company_name_kana, $res['company_name_kana']);
+        $this->assertEquals($company->address, $res['address']);
+        $this->assertEquals($company->tel, $res['tel']);
+        $this->assertEquals($company->representative, $res['representative']);
+        $this->assertEquals($company->representative_kana, $res['representative_kana']);
+        $this->assertEquals($billing->company_id, $res['company_id']);
+        $this->assertEquals($billing->billing_name, $res['billing_name']);
+        $this->assertEquals($billing->billing_name_kana, $res['billing_name_kana']);
+        $this->assertEquals($billing->billing_address, $res['billing_address']);
+        $this->assertEquals($billing->billing_tel, $res['billing_tel']);
+        $this->assertEquals($billing->department, $res['department']);
+        $this->assertEquals($billing->billing_address_name, $res['billing_address_name']);
+        $this->assertEquals($billing->billing_address_name_kana, $res['billing_address_name_kana']);
     }
 }
