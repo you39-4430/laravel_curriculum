@@ -94,7 +94,6 @@ class BillingControllerTest extends TestCase
             'billing_address_name' => $billing->billing_address_name,
             'billing_address_name_kana' => $billing->billing_address_name_kana
         ];
-
         $res = $this->getJson(route('api.billing.show',$billing->id));
         $res->assertOk();
 

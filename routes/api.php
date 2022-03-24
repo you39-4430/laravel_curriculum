@@ -29,7 +29,7 @@ Route::post('company/create', [CompanyController::class, 'store'])->name('api.co
 Route::get('company/show/{id}', [CompanyController::class, 'show'])->name('api.company.show');
 Route::put('company/update/{id}', [CompanyController::class, 'update'])->name('api.company.update');
 Route::delete('company/delete/{id}', [CompanyController::class, 'destroy'])->name('api.company.delete');
-Route::get('company/relationshow/{id}', [CompanyController::class, 'relationShow'])->name('api.company.relationShow');
+Route::get('company/formatshow/{id}', [CompanyController::class, 'formatShow'])->name('api.company.formatShow');
 
 Route::post('billing/create', [BillingController::class, 'store'])->name('api.billing.create');
 Route::get('billing/show/{id}', [BillingController::class, 'show'])->name('api.billing.show');

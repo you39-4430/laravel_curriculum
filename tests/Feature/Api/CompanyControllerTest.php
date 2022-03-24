@@ -164,7 +164,7 @@ class CompanyControllerTest extends TestCase
     {
         Billing::factory()->create();
         $company = Company::all()->first();
-        $res = $this->getJson(route('api.company.relationShow', $company->id + 1));
+        $res = $this->getJson(route('api.company.formatShow', $company->id + 1));
         $res->assertStatus(404);
     }
 
@@ -175,8 +175,8 @@ class CompanyControllerTest extends TestCase
     {
         Billing::factory()->create();
         $company = Company::all()->first();
-        $res = $this->getJson(route('api.company.relationShow', $company->id));
+        $res = $this->getJson(route('api.company.formatShow', $company->id));
         $res->assertOk();
-        dd($res[0],$res[1]);
+        dd($res);
     }
 }
