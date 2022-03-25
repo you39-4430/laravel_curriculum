@@ -34,7 +34,6 @@ class CompanyController extends Controller
     public function show($id)
     {
         return $this->company->findOrFail($id);
-
     }
 
     /**
@@ -64,8 +63,6 @@ class CompanyController extends Controller
      */
     public function formattedResponseBody($id)
     {
-        $company = collect($this->company->findOrFail($id))->toArray();
-        $billing = collect($this->company->findOrFail($id)->billing)->toArray();
-        return array_merge($company, $billing);
+        return $this->company->with('billing')->findOrFail($id);
     }
 }
