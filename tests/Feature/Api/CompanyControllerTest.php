@@ -164,7 +164,7 @@ class CompanyControllerTest extends TestCase
     {
         Billing::factory()->create();
         $company = Company::all()->first();
-        $res = $this->getJson(route('api.company.formatShow', $company->id + 1));
+        $res = $this->getJson(route('api.company.format', $company->id + 1));
         $res->assertStatus(404);
     }
 
@@ -176,7 +176,7 @@ class CompanyControllerTest extends TestCase
         Billing::factory()->create();
         $company = Company::all()->first();
         $billing = Billing::all()->first();
-        $res = $this->getJson(route('api.company.formatShow', $company->id));
+        $res = $this->getJson(route('api.company.format', $company->id));
         $res->assertOk();
 
         $this->assertEquals($company->company_name, $res['company_name']);
@@ -185,13 +185,13 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($company->tel, $res['tel']);
         $this->assertEquals($company->representative, $res['representative']);
         $this->assertEquals($company->representative_kana, $res['representative_kana']);
-        $this->assertEquals($billing->company_id, $res['company_id']);
-        $this->assertEquals($billing->billing_name, $res['billing_name']);
-        $this->assertEquals($billing->billing_name_kana, $res['billing_name_kana']);
-        $this->assertEquals($billing->billing_address, $res['billing_address']);
-        $this->assertEquals($billing->billing_tel, $res['billing_tel']);
-        $this->assertEquals($billing->department, $res['department']);
-        $this->assertEquals($billing->billing_address_name, $res['billing_address_name']);
-        $this->assertEquals($billing->billing_address_name_kana, $res['billing_address_name_kana']);
+        $this->assertEquals($billing->company_id, $res['billing']['company_id']);
+        $this->assertEquals($billing->billing_name, $res['billing']['billing_name']);
+        $this->assertEquals($billing->billing_name_kana, $res['billing']['billing_name_kana']);
+        $this->assertEquals($billing->billing_address, $res['billing']['billing_address']);
+        $this->assertEquals($billing->billing_tel, $res['billing']['billing_tel']);
+        $this->assertEquals($billing->department, $res['billing']['department']);
+        $this->assertEquals($billing->billing_address_name, $res['billing']['billing_address_name']);
+        $this->assertEquals($billing->billing_address_name_kana, $res['billing']['billing_address_name_kana']);
     }
 }

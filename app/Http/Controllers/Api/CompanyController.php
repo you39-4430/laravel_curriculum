@@ -61,11 +61,8 @@ class CompanyController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function formatShow($id)
+    public function formattedResponseBody($id)
     {
-        $company = collect($this->company->findOrFail($id))->toArray();
-        $billing = collect($this->company->findOrFail($id)->billing)->toArray();
-        return array_merge($company, $billing);
-
+        return $this->company->with('billing')->findOrFail($id);
     }
 }
