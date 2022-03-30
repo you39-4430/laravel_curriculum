@@ -21,9 +21,7 @@ class CompanyController extends Controller
      */
     public function store(CompanyRequest $request)
     {
-        $params = $request->all();
-
-        $this->company->fill($params)->save();
+        $this->company->create($request->validated());
         return ['message' => 'ok'];
     }
 
@@ -43,8 +41,7 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, $id)
     {
-        $params = $request->all();
-        $this->company->findOrFail($id)->fill($params)->update();
+        $this->company->findOrFail($id)->fill($request->validated())->update();
         return $this->company->findOrFail($id);
     }
 

@@ -31,4 +31,9 @@ class Billing extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at'];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

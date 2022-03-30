@@ -29,9 +29,9 @@ Route::post('company/create', [CompanyController::class, 'store'])->name('api.co
 Route::get('company/{id}', [CompanyController::class, 'show'])->name('api.company.show');
 Route::put('company/{id}', [CompanyController::class, 'update'])->name('api.company.update');
 Route::delete('company/{id}', [CompanyController::class, 'destroy'])->name('api.company.delete');
-Route::get('company/join_data/{id}', [CompanyController::class, 'formattedResponseBody'])->name('api.company.formattedResponseBody');
+Route::get('company/{id}/join_billing_data', [CompanyController::class, 'formattedResponseBody'])->name('api.company.formattedResponseBody');
 
-Route::post('billing/create', [BillingController::class, 'store'])->name('api.billing.create');
-Route::get('billing/{id}', [BillingController::class, 'show'])->name('api.billing.show');
-Route::put('billing/{id}', [BillingController::class, 'update'])->name('api.billing.update');
-Route::delete('billing/{id}', [BillingController::class, 'destroy'])->name('api.billing.delete');
+Route::post('company/{id}/billing', [BillingController::class, 'store'])->name('api.billing.create');
+Route::get('company/{id}/billing', [BillingController::class, 'show'])->name('api.billing.show');
+Route::put('company/{id}/billing', [BillingController::class, 'update'])->name('api.billing.update');
+Route::delete('company/{id}/billing', [BillingController::class, 'destroy'])->name('api.billing.delete');
