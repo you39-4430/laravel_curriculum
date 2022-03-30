@@ -20,11 +20,11 @@ class Billing extends Model
         'company_id',
         'billing_name',
         'billing_name_kana',
-        'billing_address',
-        'billing_tel',
+        'address',
+        'tel',
         'department',
-        'billing_address_name',
-        'billing_address_name_kana'
+        'billing_address',
+        'billing_address_kana'
     ];
 
     /**
