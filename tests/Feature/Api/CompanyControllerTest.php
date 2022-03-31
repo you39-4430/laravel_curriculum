@@ -47,7 +47,7 @@ class CompanyControllerTest extends TestCase
 
         $companies = Company::all();
         $this->assertCount(1, $companies);
-        $company = $companies->first();
+        $company = Company::first();
         $this->assertEquals($params['company_name'], $company->company_name);
         $this->assertEquals($params['company_name_kana'], $company->company_name_kana);
         $this->assertEquals($params['address'], $company->address);
@@ -135,7 +135,7 @@ class CompanyControllerTest extends TestCase
     public function 会社情報削除テスト失敗()
     {
         Billing::factory()->create();
-        $company = Company::all()->first();
+        $company = Company::first();
 
         $res = $this->deleteJson(route('api.company.delete', $company->id + 1));
         $res->assertStatus(404);
@@ -147,7 +147,7 @@ class CompanyControllerTest extends TestCase
     public function 会社情報削除テスト()
     {
         Billing::factory()->create();
-        $company = Company::all()->first();
+        $company = Company::first();
         $res = $this->deleteJson(route('api.company.delete', $company->id));
         $res->assertOk();
 
@@ -163,8 +163,8 @@ class CompanyControllerTest extends TestCase
     public function 会社情報・請求先情報取得テスト失敗()
     {
         Billing::factory()->create();
-        $company = Company::all()->first();
-        $res = $this->getJson(route('api.company.formattedResponseBody', $company->id + 1));
+        $company = Company::first();
+        $res = $this->getJson(route('api.company.withBillingData', $company->id + 1));
         $res->assertStatus(404);
     }
 
@@ -174,9 +174,9 @@ class CompanyControllerTest extends TestCase
     public function 会社情報・請求先情報取得テスト()
     {
         Billing::factory()->create();
-        $company = Company::all()->first();
-        $billing = Billing::all()->first();
-        $res = $this->getJson(route('api.company.formattedResponseBody', $company->id));
+        $company = Company::first();
+        $billing = Billing::first();
+        $res = $this->getJson(route('api.company.withBillingData', $company->id));
         $res->assertOk();
 
         $this->assertEquals($company->company_name, $res['company_name']);
@@ -191,7 +191,7 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($billing->address, $res['billing']['address']);
         $this->assertEquals($billing->tel, $res['billing']['tel']);
         $this->assertEquals($billing->department, $res['billing']['department']);
-        $this->assertEquals($billing->billing_address, $res['billing']['billing_address']);
-        $this->assertEquals($billing->billing_address_kana, $res['billing']['billing_address_kana']);
+        $this->assertEquals($billing->registered_person, $res['billing']['registered_person']);
+        $this->assertEquals($billing->registered_person_kana, $res['billing']['registered_person_kana']);
     }
 }

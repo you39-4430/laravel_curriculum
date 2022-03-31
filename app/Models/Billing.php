@@ -23,8 +23,8 @@ class Billing extends Model
         'address',
         'tel',
         'department',
-        'billing_address',
-        'billing_address_kana'
+        'registered_person',
+        'registered_person_kana'
     ];
 
     /**

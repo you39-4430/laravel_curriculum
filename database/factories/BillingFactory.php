@@ -29,8 +29,8 @@ class BillingFactory extends Factory
             'address' => $this->faker->address(),
             'tel' => $this->faker->phoneNumber(),
             'department' => '営業部',
-            'billing_address' => '佐藤 太郎',
-            'billing_address_kana' => 'サトウ タロウ',
+            'registered_person' => '佐藤 太郎',
+            'registered_person_kana' => 'サトウ タロウ',
             'created_at' => now(),
             'updated_at' => now()
         ];

@@ -29,8 +29,8 @@ class BillingRequest extends FormRequest
             'address' => ['required', 'string', 'max:255'],
             'tel' => ['required', 'string', 'max:255'],
             'department' => ['required', 'string', 'max:255'],
-            'billing_address' => ['required', 'string', 'max:255'],
-            'billing_address_kana' => ['required', 'string', 'max:255'],
+            'registered_person' => ['required', 'string', 'max:255'],
+            'registered_person_kana' => ['required', 'string', 'max:255'],
         ];
     }
 

@@ -42,22 +42,22 @@ class BillingControllerTest extends TestCase
             'address' => '東京都東京区東京 1-1-1',
             'tel' => '090-1234-5678',
             'department' => '営業部',
-            'billing_address' => '佐藤 太郎',
-            'billing_address_kana' => 'サトウ タロウ'
+            'registered_person' => '佐藤 太郎',
+            'registered_person_kana' => 'サトウ タロウ'
         ];
         $res = $this->postJson(route('api.billing.create', $company->id), $params);
         $res->assertOk();
 
         $billings = Billing::all();
         $this->assertCount(1, $billings);
-        $billing = $billings->first();
+        $billing = Billing::first();
         $this->assertEquals($params['billing_name'], $billing->billing_name);
         $this->assertEquals($params['billing_name_kana'], $billing->billing_name_kana);
         $this->assertEquals($params['address'], $billing->address);
         $this->assertEquals($params['tel'], $billing->tel);
         $this->assertEquals($params['department'], $billing->department);
-        $this->assertEquals($params['billing_address'], $billing->billing_address);
-        $this->assertEquals($params['billing_address_kana'], $billing->billing_address_kana);
+        $this->assertEquals($params['registered_person'], $billing->registered_person);
+        $this->assertEquals($params['registered_person_kana'], $billing->registered_person_kana);
     }
 
     /**
@@ -83,8 +83,8 @@ class BillingControllerTest extends TestCase
             'address' => $billing->address,
             'tel' => $billing->tel,
             'department' => $billing->department,
-            'billing_address' => $billing->billing_address,
-            'billing_address_kana' => $billing->billing_address_kana
+            'registered_person' => $billing->registered_person,
+            'registered_person_kana' => $billing->registered_person_kana
         ];
         $res = $this->getJson(route('api.billing.show',$billing->billing_id));
         $res->assertOk();
@@ -94,8 +94,8 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['address'], $res['address']);
         $this->assertEquals($params['tel'], $res['tel']);
         $this->assertEquals($params['department'], $res['department']);
-        $this->assertEquals($params['billing_address'], $res['billing_address']);
-        $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
+        $this->assertEquals($params['registered_person'], $res['registered_person']);
+        $this->assertEquals($params['registered_person_kana'], $res['registered_person_kana']);
     }
 
     /**
@@ -125,8 +125,8 @@ class BillingControllerTest extends TestCase
             'address' => '0000000 東京都東京区東京 1-1-1',
             'tel' => '01098761234',
             'department' => '総務部',
-            'billing_address' => '田中 太郎',
-            'billing_address_kana' => 'タナカ タロウ'
+            'registered_person' => '田中 太郎',
+            'registered_person_kana' => 'タナカ タロウ'
         ];
 
         $res = $this->putJson(route('api.billing.update', $billing->billing_id), $params);
@@ -137,8 +137,8 @@ class BillingControllerTest extends TestCase
         $this->assertEquals($params['address'], $res['address']);
         $this->assertEquals($params['tel'], $res['tel']);
         $this->assertEquals($params['department'], $res['department']);
-        $this->assertEquals($params['billing_address'], $res['billing_address']);
-        $this->assertEquals($params['billing_address_kana'], $res['billing_address_kana']);
+        $this->assertEquals($params['registered_person'], $res['registered_person']);
+        $this->assertEquals($params['registered_person_kana'], $res['registered_person_kana']);
 
     }
 

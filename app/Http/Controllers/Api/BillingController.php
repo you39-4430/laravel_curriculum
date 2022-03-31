@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\api;
 
@@ -23,7 +24,7 @@ class BillingController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function store(BillingRequest $request, $id)
+    public function store(BillingRequest $request, int $id)
     {
         $company = $this->company->findOrFail($id);
         $company->billing()->create($request->validated());
@@ -33,7 +34,7 @@ class BillingController extends Controller
     /**
      * @param int $id
      */
-    public function show($id)
+    public function show(int $id)
     {
         return $this->billing->findOrFail($id);
     }
@@ -43,16 +44,17 @@ class BillingController extends Controller
      * @param  \Illuminate\Http\Request\BillingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(BillingRequest $request, $id)
+    public function update(BillingRequest $request, int $id)
     {
         $this->billing->findOrFail($id)->fill($request->validated())->update();
+
         return $this->billing->findOrFail($id);
     }
 
     /**
      * @param int $id
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->billing->findOrFail($id)->delete();
         return ['message' => 'ok'];

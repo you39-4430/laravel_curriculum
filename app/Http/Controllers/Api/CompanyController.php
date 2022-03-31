@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Models\Company;
@@ -43,6 +43,7 @@ class CompanyController extends Controller
     {
         $this->company->findOrFail($id)->fill($request->validated())->update();
         return $this->company->findOrFail($id);
+
     }
 
     /**
@@ -58,7 +59,7 @@ class CompanyController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function formattedResponseBody($id)
+    public function withBillingData($id)
     {
         return $this->company->with('billing')->findOrFail($id);
     }

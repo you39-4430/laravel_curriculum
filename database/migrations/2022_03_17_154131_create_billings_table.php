@@ -21,8 +21,8 @@ class CreateBillingsTable extends Migration
             $table->string('address')->comment('請求先住所');
             $table->string('tel')->comment('請求先電話番号');
             $table->string('department')->comment('請求先部署');
-            $table->string('billing_address')->comment('請求先宛名');
-            $table->string('billing_address_kana')->comment('請求先宛名(かな)');
+            $table->string('registered_person')->comment('請求先宛名');
+            $table->string('registered_person_kana')->comment('請求先宛名(かな)');
             $table->timestamps();
             $table->softDeletes();
         });
