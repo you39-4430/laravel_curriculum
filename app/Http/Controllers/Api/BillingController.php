@@ -46,9 +46,9 @@ class BillingController extends Controller
      */
     public function update(BillingRequest $request, int $id)
     {
-        $this->billing->findOrFail($id)->fill($request->validated())->update();
-
-        return $this->billing->findOrFail($id);
+        $data = $this->billing->findOrFail($id);
+        $data->update($request->validated());
+        return $data;
     }
 
     /**

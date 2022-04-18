@@ -41,8 +41,9 @@ class CompanyController extends Controller
      */
     public function update(CompanyRequest $request, $id)
     {
-        $this->company->findOrFail($id)->fill($request->validated())->update();
-        return $this->company->findOrFail($id);
+        $data = $this->company->findOrFail($id);
+        $data->update($request->validated());
+        return $data;
 
     }
 
