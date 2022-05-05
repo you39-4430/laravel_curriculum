@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\TodoController;
 use App\Http\Controllers\Api\CompanyController;
 use App\Http\Controllers\Api\BillingController;
+use App\Http\Controllers\Api\AllSettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 /*
@@ -35,3 +36,5 @@ Route::post('company/{companyId}/billing', [BillingController::class, 'store'])-
 Route::get('company/{id}/billing', [BillingController::class, 'show'])->name('api.billing.show');
 Route::put('company/{id}/billing', [BillingController::class, 'update'])->name('api.billing.update');
 Route::delete('company/{id}/billing', [BillingController::class, 'destroy'])->name('api.billing.delete');
+
+Route::post('all/create', [AllSettingController::class, 'store'])->name('api.all.create');

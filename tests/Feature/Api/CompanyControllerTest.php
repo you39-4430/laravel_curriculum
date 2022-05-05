@@ -188,8 +188,8 @@ class CompanyControllerTest extends TestCase
         $this->assertEquals($billing->company_id, $res['billing']['company_id']);
         $this->assertEquals($billing->billing_name, $res['billing']['billing_name']);
         $this->assertEquals($billing->billing_name_kana, $res['billing']['billing_name_kana']);
-        $this->assertEquals($billing->address, $res['billing']['address']);
-        $this->assertEquals($billing->tel, $res['billing']['tel']);
+        $this->assertEquals($billing->billing_address, $res['billing']['billing_address']);
+        $this->assertEquals($billing->billing_tel, $res['billing']['billing_tel']);
         $this->assertEquals($billing->department, $res['billing']['department']);
         $this->assertEquals($billing->registered_person, $res['billing']['registered_person']);
         $this->assertEquals($billing->registered_person_kana, $res['billing']['registered_person_kana']);

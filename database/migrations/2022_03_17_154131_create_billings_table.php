@@ -18,8 +18,8 @@ class CreateBillingsTable extends Migration
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
             $table->string('billing_name')->comment('請求先名称');
             $table->string('billing_name_kana')->comment('請求先名称(かな)');
-            $table->string('address')->comment('請求先住所');
-            $table->string('tel')->comment('請求先電話番号');
+            $table->string('billing_address')->comment('請求先住所');
+            $table->string('billing_tel')->comment('請求先電話番号');
             $table->string('department')->comment('請求先部署');
             $table->string('registered_person')->comment('請求先宛名');
             $table->string('registered_person_kana')->comment('請求先宛名(かな)');
