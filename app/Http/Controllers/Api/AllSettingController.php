@@ -26,6 +26,8 @@ class AllSettingController extends Controller
      */
     public function store(AllSettingRequest $request)
     {
+        $company = $this->company->create($request->validated('company_name', 'company_name_kana', 'address', 'tel', 'representative', 'representative_kana'));
+        $company->billing()->create($request->validated('billing_name', 'billing_name_kana', 'billing_address', 'billing_tel', 'department', 'registered_person', 'registered_person_kana'));
         return ['message' => 'ok'];
     }
 
