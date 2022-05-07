@@ -72,4 +72,19 @@ class AllSettingControllerTest extends TestCase
         $this->assertEquals($params['registered_person'], $billing->registered_person);
         $this->assertEquals($params['registered_person_kana'], $billing->registered_person_kana);
     }
+
+    /**
+     * @test
+     */
+    public function 会社情報・請求情報登更新スト失敗()
+    {
+        $billing  = Billing::factory()->create();
+        $params = [
+            'company_name' => '株式会社 鈴木',
+            'company_name_kana' => 'カブシキガイシャ スズキ',
+        ];
+
+        $res = $this->patchJson(route('api.all.update', $billing->billing_id),$params);
+        $res->assertStatus(422);
+    }
 }

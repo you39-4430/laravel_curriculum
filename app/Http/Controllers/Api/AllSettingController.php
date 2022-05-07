@@ -31,4 +31,16 @@ class AllSettingController extends Controller
         return ['message' => 'ok'];
     }
 
+    /**
+     * @param int $id
+     * @param  \Illuminate\Http\Request\AllSettingRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function update(AllSettingRequest $request, int $id)
+    {
+        $data = $this->billing->findOrFail($id);
+        $data->update($request->validated());
+        return $data;
+    }
+
 }

@@ -38,3 +38,4 @@ Route::put('company/{id}/billing', [BillingController::class, 'update'])->name('
 Route::delete('company/{id}/billing', [BillingController::class, 'destroy'])->name('api.billing.delete');
 
 Route::post('all/create', [AllSettingController::class, 'store'])->name('api.all.create');
+Route::patch('all/{id}', [AllSettingController::class, 'update'])->name('api.all.update');
