@@ -24,19 +24,19 @@ class AllSettingRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_name' => ['required', 'string', 'max:255'],
-            'company_name_kana' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
-            'tel' => ['required', 'string', 'max:255'],
-            'representative' => ['required', 'string', 'max:255'],
-            'representative_kana' => ['required', 'string', 'max:255'],
-            'billing_name' => ['required', 'string', 'max:255'],
-            'billing_name_kana' => ['required', 'string', 'max:255'],
-            'billing_address' => ['required', 'string', 'max:255'],
-            'billing_tel' => ['required', 'string', 'max:255'],
-            'department' => ['required', 'string', 'max:255'],
-            'registered_person' => ['required', 'string', 'max:255'],
-            'registered_person_kana' => ['required', 'string', 'max:255']
+            'company.company_name' => ['required', 'string', 'max:255'],
+            'company.company_name_kana' => ['required', 'string', 'max:255'],
+            'company.address' => ['required', 'string', 'max:255'],
+            'company.tel' => ['required', 'string', 'max:255'],
+            'company.representative' => ['required', 'string', 'max:255'],
+            'company.representative_kana' => ['required', 'string', 'max:255'],
+            'company.billing.billing_name' => ['required', 'string', 'max:255'],
+            'company.billing.billing_name_kana' => ['required', 'string', 'max:255'],
+            'company.billing.billing_address' => ['required', 'string', 'max:255'],
+            'company.billing.billing_tel' => ['required', 'string', 'max:255'],
+            'company.billing.department' => ['required', 'string', 'max:255'],
+            'company.billing.registered_person' => ['required', 'string', 'max:255'],
+            'company.billing.registered_person_kana' => ['required', 'string', 'max:255']
         ];
     }
 }

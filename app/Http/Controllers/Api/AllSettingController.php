@@ -26,8 +26,9 @@ class AllSettingController extends Controller
      */
     public function store(AllSettingRequest $request)
     {
-        $company = $this->company->create($request->validated('company_name', 'company_name_kana', 'address', 'tel', 'representative', 'representative_kana'));
-        $company->billing()->create($request->validated('billing_name', 'billing_name_kana', 'billing_address', 'billing_tel', 'department', 'registered_person', 'registered_person_kana'));
+        $params = $request->validated();
+        $company = $this->company->create($params['company']);
+        $company->billing()->create($params['company']['billing']);
         return ['message' => 'ok'];
     }
 
@@ -38,9 +39,11 @@ class AllSettingController extends Controller
      */
     public function update(AllSettingRequest $request, int $id)
     {
-        $data = $this->billing->findOrFail($id);
-        $data->update($request->validated());
-        return $data;
+        $company = $this->company->findOrFail($id);
+        $company->update($request->validated('company_name', 'company_name_kana', 'address', 'tel', 'representative', 'representative_kana'));
+        // $this->billing->findOrFail($billing_id)->update($request->validated('billing_name', 'billing_name_kana', 'billing_address', 'billing_tel', 'department', 'registered_person', 'registered_person_kana'));
+        return $company;
+        // return $company_data;
     }
 
 }
