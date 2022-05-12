@@ -39,11 +39,11 @@ class AllSettingController extends Controller
      */
     public function update(AllSettingRequest $request, int $id)
     {
-        $company = $this->company->findOrFail($id);
-        $company->update($request->validated('company_name', 'company_name_kana', 'address', 'tel', 'representative', 'representative_kana'));
-        // $this->billing->findOrFail($billing_id)->update($request->validated('billing_name', 'billing_name_kana', 'billing_address', 'billing_tel', 'department', 'registered_person', 'registered_person_kana'));
+        $company = $this->company->with('billing')->findOrFail($id);
+        $params = $request->validated();
+        $company->update($params['company']);
+        $company->billing->update($params['company']['billing']);
         return $company;
-        // return $company_data;
     }
 
 }
