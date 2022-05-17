@@ -25,7 +25,7 @@ class AllSettingControllerTest extends TestCase
             'company_name' => '株式会社 鈴木',
             'company_name_kana' => 'カブシキガイシャ スズキ',
         ];
-        $res = $this->postJson(route('api.all.create'),$params);
+        $res = $this->postJson(route('api.all.create'), $params);
         $res->assertStatus(422);
     }
 
@@ -88,7 +88,7 @@ class AllSettingControllerTest extends TestCase
             'company_name_kana' => 'カブシキガイシャ スズキ',
         ];
 
-        $res = $this->patchJson(route('api.all.update', $billing->billing_id),$params);
+        $res = $this->patchJson(route('api.all.update', $billing->billing_id), $params);
         $res->assertStatus(422);
     }
 
@@ -101,26 +101,27 @@ class AllSettingControllerTest extends TestCase
         $company = Company::first();
         $params = [
             'company' => [
-                    'company_name' => '株式会社 鈴木',
-                    'company_name_kana' => 'カブシキガイシャ スズキ',
-                    'address' => '東京都東京区東京 1-1-1',
-                    'tel' => '090-1234-5678',
-                    'representative' => '鈴木 太郎',
-                    'representative_kana' => 'スズキ タロウ',
-                    'billing' => [
-                        'billing_name' => '株式会社 佐藤',
-                        'billing_name_kana' => 'カブシキガイシャ サトウ',
-                        'billing_address' => '東京都東京区東京 1-1-1',
-                        'billing_tel' => '090-1234-5678',
-                        'department' => '営業部',
-                        'registered_person' => '佐藤 太郎',
-                        'registered_person_kana' => 'サトウ タロウ'
+                'company_name' => '株式会社 鈴木',
+                'company_name_kana' => 'カブシキガイシャ スズキ',
+                'address' => '東京都東京区東京 1-1-1',
+                'tel' => '090-1234-5678',
+                'representative' => '鈴木 太郎',
+                'representative_kana' => 'スズキ タロウ',
+                'billing' => [
+                    'billing_name' => '株式会社 佐藤',
+                    'billing_name_kana' => 'カブシキガイシャ サトウ',
+                    'billing_address' => '東京都東京区東京 1-1-1',
+                    'billing_tel' => '090-1234-5678',
+                    'department' => '営業部',
+                    'registered_person' => '佐藤 太郎',
+                    'registered_person_kana' => 'サトウ タロウ'
                 ]
             ]
         ];
 
-        $res = $this->patchJson(route('api.all.update', $company->id),$params);
+        $res = $this->patchJson(route('api.all.update', $company->id), $params);
         $res->assertStatus(200);
+        // dd($res);
 
         $company = Company::first();
         $billing = Billing::first();

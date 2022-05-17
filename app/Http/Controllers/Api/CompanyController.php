@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Http\Controllers\Api;
 
 use App\Models\Company;
@@ -44,7 +46,6 @@ class CompanyController extends Controller
         $data = $this->company->findOrFail($id);
         $data->update($request->validated());
         return $data;
-
     }
 
     /**
