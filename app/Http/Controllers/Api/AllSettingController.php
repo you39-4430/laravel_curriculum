@@ -35,7 +35,7 @@ class AllSettingController extends Controller
             $company->billing()->create($params['company']['billing']);
         } catch(\Exception $e) {
             DB::rollback();
-            throw $e;
+            echo "登録に失敗しました" . $e->getMessage();
         }
 
         return ['message' => 'ok'];
@@ -57,7 +57,7 @@ class AllSettingController extends Controller
             DB::commit();
         } catch(\Exception $e) {
             DB::rollback();
-            throw $e;
+            echo "登録に失敗しました" . $e->getMessage();
         }
 
         return $company;

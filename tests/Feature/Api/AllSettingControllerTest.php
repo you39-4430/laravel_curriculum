@@ -55,6 +55,7 @@ class AllSettingControllerTest extends TestCase
         ];
         $res = $this->postJson(route('api.all.create'), $params);
         $res->assertOk();
+        // dd();
 
         $companies = Company::all();
         $billings = Billing::all();
@@ -120,8 +121,8 @@ class AllSettingControllerTest extends TestCase
         ];
 
         $res = $this->patchJson(route('api.all.update', $company->id), $params);
-        $res->assertStatus(200);
-        // dd($res);
+        // $res->assertStatus(200);
+        dd($res);
 
         $company = Company::first();
         $billing = Billing::first();
